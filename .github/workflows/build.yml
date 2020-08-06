@@ -30,9 +30,11 @@ jobs:
       DOTNET_NOLOGO: true
       DOTNET_GENERATE_ASPNET_CERTIFICATE: false
       DOTNET_ADD_GLOBAL_TOOLS_TO_PATH: false
+      DOTNET_MULTILEVEL_LOOKUP: 0
 
     steps:
     - uses: actions/checkout@v2
+
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v1
       with:
