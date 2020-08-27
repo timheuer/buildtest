@@ -72,4 +72,4 @@ jobs:
 
     - uses: montudor/action-zip@v0.1.0
       with:
-        args: unzip -qq ./artifact-zip/ubuntu-latest-log.zip -d ./vendor
+        args: unzip -qq ./artifact-zip/ubuntu-latest-log -d ./vendor
