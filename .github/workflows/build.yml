@@ -70,6 +70,11 @@ jobs:
         name: ubuntu-latest-log
         path: artifact-zip
 
+    - name: List directory
+      run: |
+        cd /home/runner/work/buildtest/buildtest/artifact-zip
+        ls -la
+
     - uses: montudor/action-zip@v0.1.0
       with:
         args: unzip -qq ./artifact-zip/ubuntu-latest-log -d ./vendor
