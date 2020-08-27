@@ -68,3 +68,8 @@ jobs:
     - uses: actions/download-artifact@v2
       with:
         name: ubuntu-latest-log
+        path: artifact-zip
+
+    - uses: montudor/action-zip@v0.1.0
+      with:
+        args: unzip -qq ./artifact-zip/ubuntu-latest-log.zip -d ./vendor
