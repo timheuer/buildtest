@@ -59,22 +59,3 @@ jobs:
       with:
         name: ${{ matrix.os }}-log
         path: ${{ matrix.os }}.binlog
-
-  get_assets:
-    name: Download artifacts
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/download-artifact@v2
-      with:
-        name: ubuntu-latest-log
-        path: artifact-zip
-
-    - name: List directory
-      run: |
-        cd /home/runner/work/buildtest/buildtest/artifact-zip
-        ls -la
-
-    - uses: montudor/action-zip@v0.1.0
-      with:
-        args: unzip -qq ./artifact-zip/ubuntu-latest-log -d ./vendor
