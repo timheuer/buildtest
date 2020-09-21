@@ -24,6 +24,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
+        dotnet: [ '2.1.x', '3.1.x', '5.0.x' ]
     env:
       DOTNET_CLI_TELEMETRY_OPTOUT: 1
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
@@ -38,24 +39,19 @@ jobs:
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.300
+        dotnet-version: ${{ matrix.dotnet }}
 
     - name: Restore
       run: dotnet restore
-
-    - name: Setup .NET Core SDK Again
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.300
 
     - name: Restore Again
       run: dotnet restore --force
 
     - name: Build
-      run: dotnet build --configuration Release --no-restore -bl:${{ matrix.os }}.binlog
+      run: dotnet build --configuration Release --no-restore -bl:${{ matrix.os }}-${{ matrix.dotnet }}.binlog
 
     - name: Publish artifact
       uses: actions/upload-artifact@master
       with:
-        name: ${{ matrix.os }}-log
-        path: ${{ matrix.os }}.binlog
+        name: ${{ matrix.os }}-${{ matrix.dotnet }}.log
+        path: ${{ matrix.os }}-${{ matrix.dotnet }}.binlog
