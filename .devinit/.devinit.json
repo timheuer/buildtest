@@ -1,0 +1,10 @@
+{
+    "$schema": "https://json.schemastore.org/devinit.schema-2.0",
+    "run": [
+        {
+            "comments": "Example that will install a specific version.",
+            "tool": "require-dotnetcoresdk",
+            "input": "5.0.100-rc.1"
+        }
+    ]
+}
