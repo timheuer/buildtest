@@ -44,9 +44,6 @@ jobs:
     - name: Restore
       run: dotnet restore
 
-    - name: Restore Again
-      run: dotnet restore --force
-
     - name: Build
       run: dotnet build --configuration Release --no-restore -bl:${{ matrix.os }}-${{ matrix.dotnet }}.binlog
 
