@@ -53,7 +53,7 @@ jobs:
         echo ${{ github.run_number }}
 
     - name: Build
-      run: dotnet build --configuration Release --no-restore -bl:${{ matrix.os }}-${{ matrix.dotnet }}.binlog /p:BuildNumber=${{ env.Date:yyyyMMdd }}.${{ env.Rev:r }
+      run: dotnet build --configuration Release --no-restore -bl:${{ matrix.os }}-${{ matrix.dotnet }}.binlog
 
     - name: Publish artifact
       uses: actions/upload-artifact@master
