@@ -47,6 +47,11 @@ jobs:
     - name: Restore
       run: dotnet restore
 
+    - name: Vars
+      run: |
+        echo ${{ github.run_id }}
+        echo ${{ github.run_number }}
+
     - name: Build
       run: dotnet build --configuration Release --no-restore -bl:${{ matrix.os }}-${{ matrix.dotnet }}.binlog
 
