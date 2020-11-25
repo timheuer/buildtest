@@ -50,6 +50,13 @@ jobs:
     - name: set env
       run: echo "CURRENT_DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
 
+    - name: Run Azure PowerShell script
+      uses: azure/powershell@v1
+      with:
+        inlineScript: |
+          Write-Host "CURRENT_DATE=$(Get-Date -format "yyyyMMdd")" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+        azPSVersion: '3.1.0'
+
     - name: Vars
       run: |
         echo ${{ github.run_id }}
