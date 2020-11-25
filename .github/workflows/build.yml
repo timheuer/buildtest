@@ -47,13 +47,17 @@ jobs:
     - name: Restore
       run: dotnet restore
 
+    - name: set env
+      run: echo "::set-env name=CURRENT_DATE::$(date +'%Y%m%d')"
+
     - name: Vars
       run: |
         echo ${{ github.run_id }}
         echo ${{ github.run_number }}
+        echo ${{ env.CURRENT_DATE }}
 
     - name: Build
-      run: dotnet build --configuration Release --no-restore -bl:${{ matrix.os }}-${{ matrix.dotnet }}.binlog
+      run: dotnet build --configuration Release --no-restore -bl:${{ matrix.os }}-${{ matrix.dotnet }}.binlog /p:BuildNumber=${{ env.CURRENT_DATE }}
 
     - name: Publish artifact
       uses: actions/upload-artifact@master
