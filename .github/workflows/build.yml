@@ -57,10 +57,16 @@ jobs:
         echo $CURRENT_DATE
 
     - name: Build
-      run: dotnet build --configuration Release --no-restore -bl:${{ matrix.os }}-${{ matrix.dotnet }}.binlog /p:BuildNumber=${{ env.CURRENT_DATE }}
+      run: dotnet build --configuration Release --no-restore -bl:${{ matrix.os }}-${{ matrix.dotnet }}.binlog /p:BuildNumber=${{ env.CURRENT_DATE }} -o published
 
     - name: Publish artifact
       uses: actions/upload-artifact@master
       with:
         name: ${{ matrix.os }}-${{ matrix.dotnet }}.log
         path: ${{ matrix.os }}-${{ matrix.dotnet }}.binlog
+
+    - name: Publish artifact
+      uses: actions/upload-artifact@master
+      with:
+        name: binaries
+        path: published
