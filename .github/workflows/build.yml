@@ -59,7 +59,7 @@ jobs:
         echo $CURRENT_DATE
 
     - name: Build
-      run: dotnet build --configuration Release --no-restore -bl:${{ matrix.os }}-${{ matrix.dotnet }}.binlog /p:BuildNumber=$env:CURRENT_DATE.${{github.run_number}} -o published
+      run: dotnet build --configuration Release --no-restore -bl:${{ matrix.os }}-${{ matrix.dotnet }}.binlog /p:BuildNumber=$Env:CURRENT_DATE.${{github.run_number}} -o published
       shell: pwsh
 
     - name: Publish artifact
