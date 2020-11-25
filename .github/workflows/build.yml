@@ -48,13 +48,13 @@ jobs:
       run: dotnet restore
 
     - name: set env
-      run: echo "::set-env name=CURRENT_DATE::$(date +'%Y%m%d')"
+      run: echo "CURRENT_DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
 
     - name: Vars
       run: |
         echo ${{ github.run_id }}
         echo ${{ github.run_number }}
-        echo ${{ env.CURRENT_DATE }}
+        echo $CURRENT_DATE
 
     - name: Build
       run: dotnet build --configuration Release --no-restore -bl:${{ matrix.os }}-${{ matrix.dotnet }}.binlog /p:BuildNumber=${{ env.CURRENT_DATE }}
