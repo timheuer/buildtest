@@ -72,3 +72,8 @@ jobs:
       with:
         name: binaries
         path: published
+
+    - name: NetCoreAction
+      uses: timheuer/dotnet-action@master
+      env:
+        STATUS_MESSAGE: "Executed status update from app"
